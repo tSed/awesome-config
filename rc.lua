@@ -37,8 +37,17 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
+-- >>> Sam's config:
+-- terminal = "xterm"
+-- editor = os.getenv("EDITOR") or "nano"
+terminal = "gnome-terminal"
+editor = os.getenv("EDITOR") or "emacs"
+webbrowser = "chromium"
+ide = "qtcreator"
+viewer = "evince"
+office = "libreoffice"
+graphiceditor = "gimp"
+-- <<< Sam's config.
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -227,9 +236,22 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
+-- >>> Sam's config:
+--    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+--    awful.key({ modkey, "Control" }, "r", awesome.restart),
+--    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+
+    awful.key({ modkey, "Control" }, "e", function () awful.util.spawn(editor) end),
+    awful.key({ modkey, "Control" }, "w", function () awful.util.spawn(webbrowser) end),
+    awful.key({ modkey, "Control" }, "o", function () awful.util.spawn(office) end),
+    awful.key({ modkey, "Control" }, "v", function () awful.util.spawn(viewer) end),
+    awful.key({ modkey, "Control" }, "d", function () awful.util.spawn(ide) end),
+    awful.key({ modkey, "Control" }, "g", function () awful.util.spawn(graphiceditor) end),
+-- <<< Sam's config.
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
