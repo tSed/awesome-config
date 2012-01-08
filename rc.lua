@@ -43,6 +43,8 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "emacs"
 webbrowser = "chromium"
+webbrowser2 = "firefox"
+webbrowser3 = "epiphany"
 ide = "qtcreator"
 viewer = "evince"
 office = "libreoffice"
@@ -280,6 +282,8 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Control" }, "e", function () awful.util.spawn(editor) end),
     awful.key({ modkey, "Control" }, "w", function () awful.util.spawn(webbrowser) end),
+    awful.key({ modkey, "Control" }, "f", function () awful.util.spawn(webbrowser2) end),
+    awful.key({ modkey, "Control", "Shift" }, "f", function () awful.util.spawn(webbrowser3) end),
     awful.key({ modkey, "Control" }, "o", function () awful.util.spawn(office) end),
     awful.key({ modkey, "Control" }, "v", function () awful.util.spawn(viewer) end),
     awful.key({ modkey, "Control" }, "d", function () awful.util.spawn(ide) end),
