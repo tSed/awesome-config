@@ -244,17 +244,129 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
-    awful.key({ modkey,           }, "j",
+keybindings = {
+  -- {{{ Awesome default key bindings
+  {
+    view_prev             = { { modkey,                  }, "Left" },
+    view_next             = { { modkey,                  }, "Right" },
+    history_restore       = { { modkey,                  }, "Escape" },
+    client_focus_next     = { { modkey,                  }, "j" },
+    client_focus_prev     = { { modkey,                  }, "k" },
+    main_menu             = { { modkey,                  }, "w" },
+    -- layout manipulation
+    client_swap_next      = { { modkey, "Shift"          }, "j" },
+    client_swap_prev      = { { modkey, "Shift"          }, "k" },
+    screen_focus_next     = { { modkey, "Control"        }, "j" },
+    screen_focus_prev     = { { modkey, "Control"        }, "k" },
+    client_jumpto_urgent  = { { modkey,                  }, "u" },
+    client_history_prev   = { { modkey,                  }, "Tab" },
+    -- Standard program
+    spawn_terminal        = { { modkey,                  }, "Return" },
+    awesome_restart       = { { modkey, "Control"        }, "r" },
+    awesome_quit          = { { modkey, "Shift"          }, "q" },
+    browser_menu          = {},
+    spawn_text_editor     = { { modkey, "Control"        }, "e" },
+    spawn_ide             = {},
+    spawn_suite_office    = {},
+    spawn_suite_graphic   = {},
+    spawn_viewer_pdf      = {},
+    spawn_viewer_image    = {},
+    tag_inc_mw_fact       = { { modkey,                  }, "l" },
+    tag_dec_mw_fact       = { { modkey,                  }, "h" },
+    tag_inc_n_master      = { { modkey, "Shift"          }, "h" },
+    tag_dec_n_master      = { { modkey, "Shift"          }, "l" },
+    tag_inc_n_col         = { { modkey, "Control"        }, "h" },
+    tag_dec_n_col         = { { modkey, "Control"        }, "l" },
+    layout_next           = { { modkey,                  }, "space" },
+    layout_prev           = { { modkey, "Shift"          }, "space" },
+    client_restore        = { { modkey, "Control"        }, "n" },
+    -- Prompt
+    exec_command          = { { modkey,                  }, "r" },
+    exec_lua              = { { modkey,                  }, "x" },
+    -- Menubar
+    menu_bar              = { { modkey,                  }, "p" },
+    -- client keys
+    client_fullscreen     = { { modkey,                  }, "f" },
+    client_kill           = { { modkey, "Shift"          }, "c" },
+    client_floating       = { { modkey, "Control"        }, "space" },
+    client_get_master     = { { modkey, "Control"        }, "Return" },
+    client_move_to_screen = { { modkey,                  }, "o" },
+    client_on_top         = { { modkey,                  }, "t" },
+    client_minimize       = { { modkey,                  }, "n" },
+    client_maximize       = { { modkey,                  }, "m" },
+  },
+  -- }}}
+  -- {{{ my key bindings
+  {
+    view_prev            = { { modkey, "Control"        }, "Left" },
+    view_next            = { { modkey, "Control"        }, "Right" },
+    history_restore      = { { modkey,                  }, "Escape" },
+    client_focus_next    = { { modkey,                  }, "Right" },
+    client_focus_prev    = { { modkey,                  }, "Left" },
+    main_menu            = { { modkey,                  }, "w" },
+    -- layout manipulation
+    client_swap_next     = { { modkey, "Shift"          }, "Up" },
+    client_swap_prev     = { { modkey, "Shift"          }, "Down" },
+    screen_focus_next    = { { modkey, "Shift"          }, "Right" },
+    screen_focus_prev    = { { modkey, "Shift"          }, "Left" },
+    client_jumpto_urgent = { { modkey,                  }, "u" },
+    client_history_prev  = { { modkey,                  }, "Tab" },
+    -- Standard program
+    spawn_terminal       = { { modkey,                  }, "Return" },
+    awesome_restart      = { { modkey, "Control"        }, "r" },
+    awesome_quit         = { { modkey, "Shift"          }, "q" },
+    browser_menu         = { { modkey, "Control"        }, "w" },
+    spawn_text_editor    = { { modkey, "Control"        }, "e" },
+    spawn_ide            = { { modkey, "Control"        }, "d" },
+    spawn_suite_office   = { { modkey, "Control"        }, "o" },
+    spawn_suite_graphic  = { { modkey, "Control"        }, "g" },
+    spawn_viewer_pdf     = { { modkey, "Control"        }, "p" },
+    spawn_viewer_image   = { { modkey, "Control"        }, "i" },
+    tag_inc_mw_fact      = { { modkey,                  }, "l" },
+    tag_dec_mw_fact      = { { modkey,                  }, "h" },
+    tag_inc_n_master     = { { modkey, "Shift"          }, "h" },
+    tag_dec_n_master     = { { modkey, "Shift"          }, "l" },
+    tag_inc_n_col        = { { modkey, "Control"        }, "h" },
+    tag_dec_n_col        = { { modkey, "Control"        }, "l" },
+    layout_next          = { { modkey,                  }, "space" },
+    layout_prev          = { { modkey, "Shift"          }, "space" },
+    client_restore       = { { modkey, "Control"        }, "n" },
+    -- Prompt
+    exec_command         = { { modkey,                  }, "r" },
+    exec_lua             = { { modkey,                  }, "x" },
+    -- Menubar
+    menu_bar             = { { modkey,                  }, "p" },
+    -- client keys
+    client_fullscreen     = { { modkey,                  }, "f" },
+    client_kill           = { { modkey, "Shift"          }, "c" },
+    client_floating       = { { modkey, "Control"        }, "space" },
+    client_get_master     = { { modkey, "Control"        }, "Return" },
+    client_move_to_screen = { { modkey,                  }, "o" },
+    client_on_top         = { { modkey,                  }, "t" },
+    client_minimize       = { { modkey,                  }, "n" },
+    client_maximize       = { { modkey,                  }, "m" },
+  }
+  -- }}}
+}
+keys = keybindings[2]
+
+globalkeys = awful.util.table.join(
+    -- key binding switch
+    awful.key({ modkey, "Alt"     }, "b",
+        function ()
+            keys = keybindings.next(1, keys)
+        end),
+    awful.key(keys.view_prev[1], keys.view_prev[2], awful.tag.viewprev       ),
+    awful.key(keys.view_next[1], keys.view_next[2], awful.tag.viewnext       ),
+    awful.key(keys.history_restore[1], keys.history_restore[2], awful.tag.history.restore),
+
+    awful.key(keys.client_focus_prev[1], keys.client_focus_prev[2],
         function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "k",
+    awful.key(keys.client_focus_next[1], keys.client_focus_next[2],
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
@@ -262,12 +374,12 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-    awful.key({ modkey,           }, "Tab",
+    awful.key(keys.client_swap_next[1], keys.client_swap_next[2], function () awful.client.swap.byidx(  1)    end),
+    awful.key(keys.client_swap_prev[1], keys.client_swap_prev[2], function () awful.client.swap.byidx( -1)    end),
+    awful.key(keys.screen_focus_next[1], keys.screen_focus_next[2], function () awful.screen.focus_relative( 1) end),
+    awful.key(keys.screen_focus_prev[1], keys.screen_focus_prev[2], function () awful.screen.focus_relative(-1) end),
+    awful.key(keys.client_jumpto_urgent[1], keys.client_jumpto_urgent[2], awful.client.urgent.jumpto),
+    awful.key(keys.client_history_prev[1], keys.client_history_prev[2],
         function ()
             awful.client.focus.history.previous()
             if client.focus then
@@ -276,33 +388,33 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey, "Control" }, "r", awesome.restart),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+    awful.key(keys.spawn_terminal[1], keys.spawn_terminal[2], function () awful.util.spawn(terminal) end),
+    awful.key(keys.awesome_restart[1], keys.awesome_restart[2], awesome.restart),
+    awful.key(keys.awesome_quit[1], keys.awesome_quit[2], awesome.quit),
 
-    awful.key({ modkey, "Control" }, "w", function () mybrowsermenu:show() end),
-    awful.key({ modkey, "Control" }, "e", function () awful.util.spawn(editor_cmd) end),
-    awful.key({ modkey, "Control" }, "d", function () awful.util.spawn(ide) end),
-    awful.key({ modkey, "Control" }, "o", function () awful.util.spawn(suite_office) end),
-    awful.key({ modkey, "Control" }, "g", function () awful.util.spawn(suite_graphic) end),
-    awful.key({ modkey, "Control" }, "p", function () awful.util.spawn(viewer_pdf) end),
-    awful.key({ modkey, "Control" }, "i", function () awful.util.spawn(viewer_image) end),
+    awful.key(keys.browser_menu[1], keys.browser_menu[2], function () mybrowsermenu:show() end),
+    awful.key(keys.spawn_text_editor[1], keys.spawn_text_editor[2], function () awful.util.spawn(editor_cmd) end),
+    awful.key(keys.spawn_ide[1], keys.spawn_ide[2], function () awful.util.spawn(ide) end),
+    awful.key(keys.spawn_suite_office[1], keys.spawn_suite_office[2], function () awful.util.spawn(suite_office) end),
+    awful.key(keys.spawn_suite_graphic[1], keys.spawn_suite_graphic[2], function () awful.util.spawn(suite_graphic) end),
+    awful.key(keys.spawn_viewer_pdf[1], keys.spawn_viewer_pdf[2], function () awful.util.spawn(viewer_pdf) end),
+    awful.key(keys.spawn_viewer_image[1], keys.spawn_viewer_image[2], function () awful.util.spawn(viewer_image) end),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key(keys.tag_inc_mw_fact[1], keys.tag_inc_mw_fact[2], function () awful.tag.incmwfact( 0.05)    end),
+    awful.key(keys.tag_dec_mw_fact[1], keys.tag_dec_mw_fact[2], function () awful.tag.incmwfact(-0.05)    end),
+    awful.key(keys.tag_inc_n_master[1], keys.tag_inc_n_master[2], function () awful.tag.incnmaster( 1)      end),
+    awful.key(keys.tag_dec_n_master[1], keys.tag_dec_n_master[2], function () awful.tag.incnmaster(-1)      end),
+    awful.key(keys.tag_inc_n_col[1], keys.tag_inc_n_col[2], function () awful.tag.incncol( 1)         end),
+    awful.key(keys.tag_dec_n_col[1], keys.tag_dec_n_col[2], function () awful.tag.incncol(-1)         end),
+    awful.key(keys.layout_next[1], keys.layout_next[2], function () awful.layout.inc(layouts,  1) end),
+    awful.key(keys.layout_prev[1], keys.layout_prev[2], function () awful.layout.inc(layouts, -1) end),
 
-    awful.key({ modkey, "Control" }, "n", awful.client.restore),
+    awful.key(keys.client_restore[1], keys.client_restore[2], awful.client.restore),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key(keys.exec_command[1], keys.exec_command[2], function () mypromptbox[mouse.screen]:run() end),
 
-    awful.key({ modkey }, "x",
+    awful.key(keys.exec_lua[1], keys.exec_lua[2],
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
                   mypromptbox[mouse.screen].widget,
@@ -310,23 +422,23 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key(keys.menu_bar[1], keys.menu_bar[2], function() menubar.show() end)
 )
 
 clientkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ modkey,           }, "n",
+    awful.key(keys.client_fullscreen[1], keys.client_fullscreen[2], function (c) c.fullscreen = not c.fullscreen  end),
+    awful.key(keys.client_kill[1], keys.client_kill[2], function (c) c:kill()                         end),
+    awful.key(keys.client_floating[1], keys.client_floating[2], awful.client.floating.toggle                     ),
+    awful.key(keys.client_get_master[1], keys.client_get_master[2], function (c) c:swap(awful.client.getmaster()) end),
+    awful.key(keys.client_move_to_screen[1], keys.client_move_to_screen[2], awful.client.movetoscreen                        ),
+    awful.key(keys.client_on_top[1], keys.client_on_top[2], function (c) c.ontop = not c.ontop            end),
+    awful.key(keys.client_minimize[1], keys.client_minimize[2],
         function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end),
-    awful.key({ modkey,           }, "m",
+    awful.key(keys.client_maximize[1], keys.client_maximize[2],
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
