@@ -11,6 +11,12 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+-- Force multiple screens config
+-- screen on the DVI output on the left (HDMI in the right)
+-- awful.util.spawn_with_shell("xrandr --output DVI-0 --right-of HDMI-0")
+-- screen on the DVI output on the right (HDMI in the left)
+awful.util.spawn_with_shell("~/.config/awesome/display-config.sh.user")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
