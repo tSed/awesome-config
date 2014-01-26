@@ -250,9 +250,11 @@ keybindings = {
   {
     view_prev             = { { modkey,                  }, "Left" },
     view_next             = { { modkey,                  }, "Right" },
+    view_cycle            = {},
     history_restore       = { { modkey,                  }, "Escape" },
     client_focus_next     = { { modkey,                  }, "j" },
     client_focus_prev     = { { modkey,                  }, "k" },
+    client_focus_cycle    = {},
     main_menu             = { { modkey,                  }, "w" },
     -- layout manipulation
     client_swap_next      = { { modkey, "Shift"          }, "j" },
@@ -302,9 +304,11 @@ keybindings = {
   {
     view_prev             = { { modkey, "Control"        }, "Left" },
     view_next             = { { modkey, "Control"        }, "Right" },
-    history_restore       = { { modkey,                  }, "Escape" },
+    view_cycle            = { { modkey, "Control"        }, "Tab" },
+    history_restore       = { { modkey, "Control"        }, "Escape" },
     client_focus_next     = { { modkey,                  }, "Right" },
     client_focus_prev     = { { modkey,                  }, "Left" },
+    client_focus_cycle    = { { modkey,                  }, "Tab" },
     main_menu             = { { modkey,                  }, "w" },
     -- layout manipulation
     client_swap_next      = { { modkey, "Shift"          }, "Up" },
@@ -312,7 +316,7 @@ keybindings = {
     screen_focus_next     = { { modkey, "Shift"          }, "Right" },
     screen_focus_prev     = { { modkey, "Shift"          }, "Left" },
     client_jumpto_urgent  = { { modkey,                  }, "u" },
-    client_history_prev   = { { modkey,                  }, "Tab" },
+    client_history_prev   = { { modkey,                  }, "Escape" },
     -- Standard program
     spawn_terminal        = { { modkey,                  }, "Return" },
     awesome_restart       = { { modkey, "Control"        }, "r" },
@@ -361,6 +365,7 @@ globalkeys = awful.util.table.join(
         end),
     awful.key(keys.view_prev[1], keys.view_prev[2], awful.tag.viewprev       ),
     awful.key(keys.view_next[1], keys.view_next[2], awful.tag.viewnext       ),
+    awful.key(keys.view_cycle[1], keys.view_cycle[2], awful.tag.viewnext     ),
     awful.key(keys.history_restore[1], keys.history_restore[2], awful.tag.history.restore),
 
     awful.key(keys.client_focus_prev[1], keys.client_focus_prev[2],
@@ -371,6 +376,11 @@ globalkeys = awful.util.table.join(
     awful.key(keys.client_focus_next[1], keys.client_focus_next[2],
         function ()
             awful.client.focus.byidx(-1)
+            if client.focus then client.focus:raise() end
+        end),
+    awful.key(keys.client_focus_cycle[1], keys.client_focus_cycle[2],
+        function ()
+            awful.client.focus.byidx(1)
             if client.focus then client.focus:raise() end
         end),
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
