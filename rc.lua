@@ -50,7 +50,7 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 terminal = "terminology"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
-browsers = { "chromium", "epiphany", "firefox" }
+browsers = { "chromium", "firefox" }
 viewer_image = "eog"
 viewer_pdf = "evince"
 ide = "qtcreator"
