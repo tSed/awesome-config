@@ -15,7 +15,7 @@ local menubar = require("menubar")
 -- screen on the DVI output on the left (HDMI in the right)
 -- awful.util.spawn_with_shell("xrandr --output DVI-0 --right-of HDMI-0")
 -- screen on the DVI output on the right (HDMI in the left)
-awful.util.spawn_with_shell("~/.config/awesome/display-config.sh.user")
+awful.util.spawn_with_shell("~/.config/awesome/session.sh.user")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to

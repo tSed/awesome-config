@@ -1,0 +1,10 @@
+#!/bin/sh
+
+## Multidisplay settings
+#xrandr --output DVI-0 --left-of DVI-1
+
+## Pulseaudio session
+pulseaudio --kill
+pulseaudio --start
+
+export _JAVA_AWT_WM_NONREPARENTING=1
