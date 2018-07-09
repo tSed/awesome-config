@@ -44,7 +44,7 @@ beautiful.init(awful.util.get_themes_dir() .. "default/theme.lua")
 awful.spawn.with_shell("~/.config/awesome/session.sh.user")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminology"
+terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
