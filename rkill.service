@@ -1,0 +1,10 @@
+[Unit]
+Description=Setup bluetooth interface
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/sbin/rfkill block bluetooth
+ExecStart=/usr/sbin/rfkill unblock bluetooth
+
+[Install]
+WantedBy=bluetooth.target
